@@ -68,13 +68,18 @@ export default function App() {
       }
     } catch (err) {
       if (err.name !== "AbortError") {
-        setError(err.message || "Could not reach the server. Check that it is running.");
+        setError(
+          err.message ||
+            "Could not reach the server. Check that it is running.",
+        );
       }
     } finally {
       // Drop the empty placeholder if nothing came back.
       setMessages((prev) => {
         const last = prev[prev.length - 1];
-        return last && last.role === "assistant" && !last.content ? prev.slice(0, -1) : prev;
+        return last && last.role === "assistant" && !last.content
+          ? prev.slice(0, -1)
+          : prev;
       });
       setStreaming(false);
       abortRef.current = null;
@@ -147,9 +152,25 @@ export default function App() {
             autoFocus
           />
           {streaming ? (
-            <button className="icon-button" onClick={stop} aria-label="Stop generating">
-              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
-                <rect x="2" y="2" width="10" height="10" rx="2" fill="currentColor" />
+            <button
+              className="icon-button"
+              onClick={stop}
+              aria-label="Stop generating"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                aria-hidden="true"
+              >
+                <rect
+                  x="2"
+                  y="2"
+                  width="10"
+                  height="10"
+                  rx="2"
+                  fill="currentColor"
+                />
               </svg>
             </button>
           ) : (
@@ -159,7 +180,12 @@ export default function App() {
               disabled={!input.trim()}
               aria-label="Send message"
             >
-              <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                aria-hidden="true"
+              >
                 <path
                   d="M8 13V3M8 3L3.5 7.5M8 3l4.5 4.5"
                   fill="none"
